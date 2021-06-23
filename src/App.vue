@@ -1,32 +1,183 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div
+        id="app"
+        :class="{ loaded }"
+        class="page-wrapper"
+    >
+        <app-header />
+        <div class="content">
+            <router-view />
+        </div>
+        <app-footer />
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style>
+<script lang="ts">
+import verge from 'verge'
+import { Component, Vue } from 'vue-property-decorator'
+import AppHeader from '@/components/AppHeader/index.vue'
+import AppFooter from '@/components/AppFooter/index.vue'
+
+@Component({
+    components: {
+        AppHeader,
+        AppFooter
+    }
+})
+
+export default class App extends Vue {
+    loaded: boolean
+    viewportW: number
+
+    constructor () {
+        super()
+        this.loaded = false
+        this.viewportW = 0
+    }
+
+    mounted (): void {
+        this.loaded = true
+        this.viewportW = verge.viewportW()
+    }
+
+    get processing (): boolean {
+        return this.$store.state.processing
+    }
+}
+</script>
+
+<style lang="scss">
+html {
+    font-size: 20px;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+
+    @include breakpoint(desktop) {
+        font-size: 18px;
+    }
+
+    @include breakpoint(laptop) {
+        font-size: 16px;
+    }
+
+    @include breakpoint(v-tablet) {
+        font-size: 14px;
+    }
+
+    @include breakpoint(mobile) {
+        font-size: 11px;
+    }
+}
+
+::selection {
+    color: $white;
+    background: $black;
+    text-shadow: none;
+}
+
+::-moz-selection {
+    color: $white;
+    background: $black;
+    text-shadow: none;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    width: 100%;
+    color: $black;
+    font-weight: 400;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    background-color: $white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+a {
+    color: $black;
+    text-decoration: none;
+
+    &:visited,
+    &:focus,
+    &:active {
+        outline: 0 none;
+        text-decoration: none;
+    }
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1 0 auto;
+    overflow: hidden;
 }
 
-#nav {
-  padding: 30px;
+.container {
+    max-width: 77.5rem;
+    min-height: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin: auto;
+
+    @include breakpoint(tablet) {
+        max-width: none;
+        width: 100%;
+    }
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+.content {
+    flex: 1 0 auto;
+    overflow: hidden;
+    padding: 1.25rem;
+    position: relative;
+    background-color: $white;
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+    &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background-size: cover;
+        background-position: center;
+        background-image: url(./assets/images/bg-planning.jpg);
+        filter: blur(5px);
+        transform-origin: center;
+        transform: scale(1.1);
+    }
+
+    p {
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    p+p {
+        margin: 1rem 0 0;
+    }
+
+    .row {
+        margin-top: -1.875rem;
+
+        &+.row {
+            margin-top: 0;
+        }
+
+        &>[class^="col"] {
+            margin-top: 1.875rem;
+        }
+    }
 }
 </style>

@@ -1,13 +1,10 @@
 <template>
-$END$
+    <div class="planning-page">planning page</div>
 </template>
 
-<script>
-export default {
-name: "Planning"
-}
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component
+export default class PlanningPage extends Vue {}
 </script>
-
-<style scoped>
-
-</style>

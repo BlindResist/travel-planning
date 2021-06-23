@@ -1,13 +1,10 @@
 <template>
-$END$
+    <div class="main-page"></div>
 </template>
 
-<script>
-export default {
-name: "Main"
-}
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component
+export default class MainPage extends Vue {}
 </script>
-
-<style scoped>
-
-</style>
