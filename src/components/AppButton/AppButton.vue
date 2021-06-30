@@ -62,9 +62,9 @@ export default class AppButton extends Vue {
 
     @Prop({
         type: String,
-        default: 'yellow',
+        default: 'red',
         validator (value: string): boolean {
-            return ['yellow', 'red', 'blue', 'text'].includes(value)
+            return ['red'].includes(value)
         }
     }) readonly theme!: string
 
@@ -86,13 +86,12 @@ export default class AppButton extends Vue {
 .app-button {
     $z-button: '.z-button';
 
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    padding: 0.6875rem 0.625rem 0.625rem;
+    padding: 0.5rem;
     font-size: 1rem;
-    font-weight: 800;
+    font-weight: 400;
     line-height: 1.2;
     text-align: center;
     text-decoration: none;
@@ -117,37 +116,13 @@ export default class AppButton extends Vue {
 
     &--theme {
 
-        &-yellow {
-            color: $yellow-darker;
-            background-color: $yellow;
-
-            &:hover {
-                background-color: $yellow-dark;
-            }
-        }
-
         &-red {
-            color: $white;
-            background-color: $red;
+            color: $red;
+            border: 1px solid $red;
 
             &:hover {
-                background-color: $red-dark;
+                border-color: $red-dark;
             }
-        }
-
-        &-blue {
-            color: $white;
-            background-color: $gray-darker;
-
-            &:hover {
-                background-color: $gray-darkerer;
-            }
-        }
-
-        &-text {
-            width: auto;
-            color: $blue-lite;
-            background-color: $white;
         }
     }
 }

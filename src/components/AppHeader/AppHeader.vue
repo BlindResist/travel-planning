@@ -2,13 +2,15 @@
     <header class="app-header">
         <app-logo />
         <app-navigation :data="nav" />
+        <app-lang-selector />
     </header>
 </template>
 
 <script lang="ts">
-import AppLogo from '@/components/AppLogo/index.vue'
-import AppButton from '@/components/AppButton/index.vue'
-import AppNavigation from '@/components/AppNavigation/index.vue'
+import AppLogo from '@/components/AppLogo/AppLogo.vue'
+import AppButton from '@/components/AppButton/AppButton.vue'
+import AppNavigation from '@/components/AppNavigation/AppNavigation.vue'
+import AppLangSelector from '@/components/AppLangSelector/AppLangSelector.vue'
 import { Component, Vue } from 'vue-property-decorator'
 
 type ComponentData = {
@@ -22,7 +24,8 @@ type ComponentData = {
     components: {
         AppLogo,
         AppButton,
-        AppNavigation
+        AppNavigation,
+        AppLangSelector
     }
 })
 
@@ -31,8 +34,16 @@ export default class AppHeader extends Vue {
         return {
             nav: [
                 {
-                    text: 'planning',
-                    link: '/planning'
+                    text: 'main',
+                    link: '/'
+                },
+                {
+                    text: 'routes',
+                    link: '/routes'
+                },
+                {
+                    text: 'about',
+                    link: '/about'
                 }
             ]
         }
@@ -49,6 +60,8 @@ export default class AppHeader extends Vue {
     flex: 0 0 auto;
     height: 4rem;
     padding: 0 1.25rem;
+    position: relative;
+    z-index: 10;
     background-color: $white;
 }
 </style>

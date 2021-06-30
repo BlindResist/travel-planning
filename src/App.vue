@@ -5,7 +5,7 @@
         class="page-wrapper"
     >
         <app-header />
-        <div class="content">
+        <div class="container">
             <router-view />
         </div>
         <app-footer />
@@ -15,8 +15,8 @@
 <script lang="ts">
 import verge from 'verge'
 import { Component, Vue } from 'vue-property-decorator'
-import AppHeader from '@/components/AppHeader/index.vue'
-import AppFooter from '@/components/AppFooter/index.vue'
+import AppHeader from '@/components/AppHeader/AppHeader.vue'
+import AppFooter from '@/components/AppFooter/AppFooter.vue'
 
 @Component({
     components: {
@@ -38,10 +38,6 @@ export default class App extends Vue {
     mounted (): void {
         this.loaded = true
         this.viewportW = verge.viewportW()
-    }
-
-    get processing (): boolean {
-        return this.$store.state.processing
     }
 }
 </script>
@@ -98,6 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
     color: $black;
+    outline: 0 none;
     text-decoration: none;
 
     &:visited,
@@ -120,25 +117,17 @@ ul {
     width: 100%;
     flex: 1 0 auto;
     overflow: hidden;
-}
+    opacity: 0;
+    transition: opacity .2s $transition;
 
-.container {
-    max-width: 77.5rem;
-    min-height: 100%;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin: auto;
-
-    @include breakpoint(tablet) {
-        max-width: none;
-        width: 100%;
+    &.loaded {
+        opacity: 1;
     }
 }
 
-.content {
+.container {
     flex: 1 0 auto;
     overflow: hidden;
-    padding: 1.25rem;
     position: relative;
     background-color: $white;
 
@@ -158,6 +147,16 @@ ul {
         transform-origin: center;
         transform: scale(1.1);
     }
+
+    .page {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.content {
+    padding: 1.25rem;
+    position: relative;
 
     p {
         margin: 0;

@@ -1,13 +1,25 @@
 <template>
     <footer class="app-footer">
-        <span class="app-footer__copyright">&#169;&nbsp;{{ date }} Created by digama.online</span>
+        <span class="app-footer__copyright">&#169;&nbsp;{{ date }} Created by&nbsp;
+            <app-link
+                blank
+                :underline="false"
+                href="http://digama.online"
+            >digama.online</app-link>
+        </span>
     </footer>
 </template>
 
 <script lang="ts">
+import AppLink from '@/components/AppLink/AppLink.vue'
 import { Component, Vue } from 'vue-property-decorator'
 
-@Component
+@Component({
+    components: {
+        AppLink
+    }
+})
+
 export default class AppFooter extends Vue {
     data (): { date: number } {
         return {

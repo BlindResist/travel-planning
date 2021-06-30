@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import AppLink from '@/components/AppLink/index.vue'
+import AppLink from '@/components/AppLink/AppLink.vue'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
@@ -49,11 +49,18 @@ export default class AppLangSelector extends Vue {
 
     &__link {
         display: block;
-        padding: .5rem;
+        padding: .25rem;
         font-size: .75rem;
-        color: $blue-dark;
+        color: $red;
         border-radius: 6px;
-        background-color: $gray-dark;
+        border: 1px solid $red;
+        background-color: $white;
+        transition: border-color $transition, color $transition;
+
+        &:hover {
+            color: $black;
+            border-color: $black;
+        }
     }
 }
 </style>

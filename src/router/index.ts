@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import MainPage from '@/pages/Main/Main.vue'
-import PlanningPage from '@/pages/Planning/Planning.vue'
+import PlanningPage from '@/pages/Routes/Routes.vue'
 
 Vue.use(VueRouter)
 
@@ -12,8 +12,8 @@ const routes: Array<RouteConfig> = [
         component: MainPage
     },
     {
-        path: '/planning',
-        name: 'Planning page',
+        path: '/routes',
+        name: 'Routes page',
         component: PlanningPage
     }
 ]

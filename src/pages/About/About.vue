@@ -1,10 +1,10 @@
 <template>
-    <div class="planning-page">planning page</div>
+    <div class="about-page page"></div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class PlanningPage extends Vue {}
+export default class AboutPage extends Vue {}
 </script>

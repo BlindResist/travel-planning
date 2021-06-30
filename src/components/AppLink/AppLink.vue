@@ -22,7 +22,7 @@ export default class AppLink extends Vue {
 
     @Prop({
         type: String,
-        default: 'yellow'
+        default: 'red'
     }) readonly hover!: string
 
     @Prop({
@@ -51,6 +51,7 @@ export default class AppLink extends Vue {
 <style lang="scss">
 .app-link {
     color: $black;
+    text-decoration: none;
     transition: color $transition;
 
     &:visited,
@@ -61,10 +62,11 @@ export default class AppLink extends Vue {
 
     &--hover {
 
-        &-yellow {
+        &-red {
+            color: $red;
 
             &:hover {
-                color: $yellow-dark;
+                color: $black;
             }
         }
 
@@ -78,6 +80,10 @@ export default class AppLink extends Vue {
 
     &--underline {
         text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
+        }
     }
 }
 </style>

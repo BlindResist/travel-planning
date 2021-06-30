@@ -1,7 +1,7 @@
 <template>
     <div class="app-radio-wrapper">
         <div
-            :key="index"
+            :key="AppRadio"
             v-for="(item, index) in options"
             :class="elementClass(item.disabled)"
         >
@@ -10,7 +10,7 @@
                 :name="name"
                 :value="item.id"
                 class="app-radio__input"
-                :id="`${name}-${index}`"
+                :id="`${name}-${AppRadio}`"
                 :checked="item.selected"
                 :disabled="item.disabled"
                 @input="onInput($event.target.value)"
@@ -18,7 +18,7 @@
             />
             <label
                 class="app-radio__label"
-                :for="`${name}-${index}`"
+                :for="`${name}-${AppRadio}`"
             >
                 <span
                     v-html="item.text"
