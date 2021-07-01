@@ -68,7 +68,7 @@ export default class AppSelect extends Vue {
     }
 
     mounted (): void {
-        document.addEventListener('click', (e: {[elem: string]: any}) => this.hideDropdown(e))
+        document.addEventListener('click', (e: MouseEvent) => this.hideDropdown(e))
     }
 
     elementClass (classname: string): string {
@@ -89,9 +89,9 @@ export default class AppSelect extends Vue {
         ]
     }
 
-    hideDropdown (e: {[elem: string]: any}): void {
+    hideDropdown (e: MouseEvent): void {
         const el = this.$el as HTMLElement
-        const isOutside: boolean = el !== e.target && !el.contains(e.target)
+        const isOutside: boolean = el !== e.target && !el.contains(e.target as HTMLElement)
 
         if (isOutside) this.opened = false
     }
@@ -109,7 +109,7 @@ export default class AppSelect extends Vue {
 
     width: 100%;
     position: relative;
-    background-color: $gray-lite;
+    background-color: $white;
     box-shadow: inset 0 0 0 1px $blue-dark;
     user-select: none;
 
@@ -156,7 +156,7 @@ export default class AppSelect extends Vue {
         z-index: 2;
         border-radius: 50%;
         background-color: $white;
-        box-shadow: inset 0 0 0 1px $gray-dark;
+        box-shadow: inset 0 0 0 1px $blue-dark;
         transform: translateY(-50%);
         transition: background-color $transition, box-shadow $transition;
 
@@ -171,7 +171,7 @@ export default class AppSelect extends Vue {
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: $gray-dark;
+            background-color: $white;
             margin: auto;
             transition: background-color $transition;
             z-index: 1;
@@ -220,7 +220,7 @@ export default class AppSelect extends Vue {
         top: 100%;
         left: 0;
         z-index: 10;
-        background-color: $gray-lite;
+        background-color: $white;
         filter: drop-shadow(0px 2px 12px rgba(8, 61, 140, 0.14));
         transition: opacity $transition;
 
@@ -243,7 +243,7 @@ export default class AppSelect extends Vue {
         cursor: pointer;
 
         &:hover {
-            background-color: $gray-dark;
+            background-color: $white;
         }
 
         &--selected {

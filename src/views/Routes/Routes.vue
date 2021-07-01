@@ -1,16 +1,22 @@
 <template>
     <div class="routes">
-        <navigation-panel />
+        <navigation />
+        <list />
+        <layout />
     </div>
 </template>
 
 <script lang="ts">
-import NavigationPanel from '@/views/Routes/NavigationPanel.vue'
+import List from '@/views/Routes/List.vue'
+import Layout from '@/views/Routes/Layout.vue'
+import Navigation from '@/views/Routes/Navigation.vue'
 import { Vue, Component } from 'vue-property-decorator'
 
 @Component({
     components: {
-        NavigationPanel
+        List,
+        Layout,
+        Navigation
     }
 })
 

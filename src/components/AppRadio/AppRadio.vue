@@ -1,7 +1,7 @@
 <template>
     <div class="app-radio-wrapper">
         <div
-            :key="AppRadio"
+            :key="index"
             v-for="(item, index) in options"
             :class="elementClass(item.disabled)"
         >

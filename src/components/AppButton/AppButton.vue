@@ -64,7 +64,7 @@ export default class AppButton extends Vue {
         type: String,
         default: 'red',
         validator (value: string): boolean {
-            return ['red'].includes(value)
+            return ['red', 'border-red', 'yellow', 'green'].includes(value)
         }
     }) readonly theme!: string
 
@@ -91,13 +91,14 @@ export default class AppButton extends Vue {
     justify-content: center;
     padding: 0.5rem;
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 700;
     line-height: 1.2;
     text-align: center;
     text-decoration: none;
     border: 0;
     outline: 0;
-    transition: background-color $transition, color $transition;
+    background-color: $white;
+    transition: background-color $transition, color $transition, border-color $transition;
     user-select: none;
     cursor: pointer;
 
@@ -117,11 +118,56 @@ export default class AppButton extends Vue {
     &--theme {
 
         &-red {
+            color: $white;
+            background-color: $red;
+
+            &:hover {
+                background-color: $red-dark;
+            }
+        }
+
+        &-yellow {
+            color: $white;
+            background-color: $yellow;
+
+            &:hover {
+                background-color: $yellow-dark;
+            }
+        }
+
+        &-green {
+            color: $white;
+            background-color: $green;
+
+            &:hover {
+                background-color: $green-dark;
+            }
+        }
+
+        &-border-red {
             color: $red;
-            border: 1px solid $red;
+            border: 2px solid $red;
 
             &:hover {
                 border-color: $red-dark;
+            }
+        }
+
+        &-border-yellow {
+            color: $yellow;
+            border: 2px solid $yellow;
+
+            &:hover {
+                border-color: $yellow-dark;
+            }
+        }
+
+        &-border-green {
+            color: $green;
+            border: 2px solid $green;
+
+            &:hover {
+                border-color: $green-dark;
             }
         }
     }

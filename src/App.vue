@@ -125,6 +125,13 @@ ul {
     }
 }
 
+.wrapper {
+    width: auto;
+    max-width: 55rem;
+    padding: 0 1.5rem;
+    margin: auto;
+}
+
 .container {
     flex: 1 0 auto;
     overflow: hidden;

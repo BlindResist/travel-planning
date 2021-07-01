@@ -1,4 +1,4 @@
-const en: any = {
+export default {
     title: 'Fast!CV - Easy & fast CV constructor!',
     meta: {
         author: 'Artem Anpilov',
@@ -7,16 +7,20 @@ const en: any = {
         keywords: 'resume, cv, constructor, builder, generator, simple, fast, online, free, without registration, pdf, create'
     },
     buttons: {
+        open: 'Open',
+        close: 'Close',
         addNew: '+ Add',
         download: 'Download',
         apply: 'Apply',
-        delete: 'Delete'
+        delete: 'Delete',
+        createNew: 'Create new route!'
     },
     footer: {
         name: 'Fast!CV',
         version: 'v.1.0',
         created: 'Created by'
+    },
+    routes: {
+        title: 'Routes list'
     }
 }
-
-export default en

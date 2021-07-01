@@ -14,5 +14,5 @@ import { Component, Vue } from 'vue-property-decorator'
     }
 })
 
-export default class PlanningPage extends Vue {}
+export default class RoutesPage extends Vue {}
 </script>

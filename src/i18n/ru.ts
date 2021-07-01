@@ -1,4 +1,4 @@
-const ru: any = {
+export default {
     title: 'Fast!CV - Простой и быстрый конструктор резюме!',
     meta: {
         author: 'Артём Анпилов',
@@ -7,16 +7,20 @@ const ru: any = {
         keywords: 'резюме, конструктор, генератор, просто, быстро, онлайн, бесплатно, без регистрации, pdf, создать'
     },
     buttons: {
+        open: 'Открыть',
+        close: 'Закрыть',
         addNew: '+ Добавить',
         download: 'Скачать',
         apply: 'Применить',
-        delete: 'Удалить'
+        delete: 'Удалить',
+        createNew: 'Создать новый маршрут!'
     },
     footer: {
         name: 'Fast!CV',
         version: 'v.1.0',
         created: 'Создано'
+    },
+    routes: {
+        title: 'Маршруты'
     }
 }
-
-export default ru

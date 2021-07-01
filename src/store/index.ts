@@ -1,10 +1,11 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, { StoreOptions } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
+import { IRoute, IRootState } from '@/types/types'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store: StoreOptions<IRootState> = {
     plugins: [
         createPersistedState({
             storage: window.sessionStorage
@@ -14,16 +15,20 @@ export default new Vuex.Store({
         lang: 'en',
         processing: false,
         languages: ['ru', 'en'],
-        openedRoutes: [
+        routes: [
             {
                 id: '0',
                 name: 'First route',
-                selected: false
+                opened: false,
+                selected: false,
+                date: [1625153594, 1625153594]
             },
             {
                 id: '1',
                 name: 'Second route',
-                selected: false
+                opened: false,
+                selected: false,
+                date: [1625153594, 1625153594]
             }
         ]
     },
@@ -33,6 +38,31 @@ export default new Vuex.Store({
         },
         processing (state, status: boolean): void {
             state.processing = status
+        },
+        openRoute (state, id): void {
+            state.routes.forEach((item: IRoute): void => {
+                if (item.id === id) item.opened = true
+            })
+        },
+        closeRoute (state, id): void {
+            state.routes.forEach((item: IRoute): void => {
+                if (item.id === id) {
+                    item.opened = false
+                    item.selected = false
+                }
+            })
+        },
+        selectRoute (state, id): void {
+            state.routes.forEach((item: IRoute): void => {
+                if (id === null) {
+                    item.selected = false
+                    return
+                }
+
+                item.selected = item.id === id
+            })
         }
     }
-})
+}
+
+export default new Vuex.Store<IRootState>(store)

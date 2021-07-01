@@ -1,20 +1,29 @@
 <template>
-    <div class="social">
+    <div class="app-social">
         <a
             target="_blank"
             :key="item.name"
             :href="item.link"
             :title="item.name"
             v-for="item in data"
-            :class="`social__item icon icon-${item.name}`"
+            :class="`app-social__item icon icon-${item.name}`"
         ></a>
     </div>
 </template>
 
-<script>
-export default {
-    name: 'social',
-    data () {
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+
+type Data = {
+    data: {
+        name: string,
+        link: string
+    }[]
+}
+
+@Component
+export default class AppSocial extends Vue {
+    data (): Data {
         return {
             data: [
                 {
@@ -40,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss">
-.social {
+.app-social {
     display: flex;
     align-items: center;
     flex-flow: row nowrap;

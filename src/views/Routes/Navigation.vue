@@ -1,65 +1,73 @@
 <template>
-    <div class="navigation-panel">
-        <div class="navigation-panel__tab navigation-panel__tab--first">
-            <span class="navigation-panel__tab-name">Routes list</span>
+    <div class="navigation">
+        <div class="navigation__tab navigation__tab--first">
+            <span
+                @click="selectTab(null)"
+                class="navigation__tab-name"
+            >{{ $t('routes.title') }}</span>
         </div>
         <div
             :key="item.id"
-            v-for="item in routes"
+            v-for="item in selected"
             :class="tabClass(item.selected)"
         >
             <span
                 @click="selectTab(item.id)"
-                class="navigation-panel__tab-name"
+                class="navigation__tab-name"
             >{{ item.name }}</span>
-            <div class="navigation-panel__tab-close icon icon-cross"></div>
+            <div
+                :title="$t('buttons.close')"
+                @click="closeRoute(item.id)"
+                class="navigation__tab-close icon icon-cross"
+            ></div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
-
-type Data = {
-    routes: {
-        id: string,
-        name: string,
-        selected: boolean
-    }[]
-}
+import { IRoute } from '@/types/types'
+import { Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class NavigationPanel extends Vue {
-    routes: Data
+export default class Navigation extends Vue {
+    routes: IRoute[]
 
     constructor () {
         super()
-        this.routes = this.$store.state.openedRoutes
+        this.routes = this.$store.state.routes
     }
 
-    tabClass (active: boolean): Array<string> {
+    get selected (): IRoute[] {
+        return this.routes.filter((item: IRoute) => item.opened)
+    }
+
+    tabClass (selected: boolean): [string, { [elem: string]: boolean }] {
         return [
-            'navigation-panel__tab navigation-panel__tab--route',
-            { active }
+            'navigation__tab navigation__tab--route',
+            {
+                'navigation__tab--active': selected
+            }
         ]
     }
 
     selectTab (id: string): void {
-        this.routes.forEach((item: { [elem: string]: string | boolean }) => {
-            item.selected = item.id === id
-        })
+        this.$store.commit('selectRoute', id)
+    }
+
+    closeRoute (id: string): void {
+        this.$store.commit('closeRoute', id)
     }
 }
 </script>
 
-<style lang="scss">
-.navigation-panel {
+<style lang="scss" scoped>
+.navigation {
     $parent: &;
-    $height: 3rem;
+    $height: 3.5rem;
 
     height: $height;
     background-color: $white;
-    box-shadow: inset 0 1px 0 0 rgba($gray-bg, .2);
+    box-shadow: inset 0 1px 0 0 rgba($gray-dark, .2), 0 0 10px 0 rgba($gray-dark, .5);
 
     &__tab {
         box-sizing: border-box;
@@ -93,7 +101,7 @@ export default class NavigationPanel extends Vue {
             z-index: 1;
             font-size: .875rem;
             border-radius: 50%;
-            color: $red-dark;
+            color: $white;
             cursor: pointer;
             transition: opacity $transition;
 
@@ -144,11 +152,25 @@ export default class NavigationPanel extends Vue {
                 transform-origin: center;
                 transform: skewX(22deg);
                 background-color: $red;
+                transition: background-color $transition;
+            }
+        }
+
+        &--active {
+
+            &#{$parent}__tab {
+
+                &--route {
+
+                    &:after {
+                        background-color: $red-dark;
+                    }
+                }
             }
 
-            &.active {
+            #{$parent}__tab {
 
-                #{$parent}__tab-name {
+                &-name {
                     border-bottom-color: transparent;
                 }
             }
