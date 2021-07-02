@@ -10,11 +10,10 @@
                 <list-item
                     :data="item"
                     :key="index"
-                    :index="index + 1"
                     v-for="(item, index) in routes"
                 />
-                <div class="list__new">
-                    <span class="list__new-text">{{ $t('buttons.createNew') }}</span>
+                <div class="list__addnew">
+                    <span class="list__addnew-text">{{ $t('buttons.createNew') }}</span>
                 </div>
             </div>
         </div>
@@ -48,15 +47,16 @@ export default class List extends Vue {
 .list {
     padding: 1.5rem 0;
 
-    &__new {
+    &__addnew {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
+        width: 20rem;
         height: 118px;
         padding: 1.5rem;
-        margin-top: 1rem;
+        margin: 1rem auto 0;
         border-radius: .25rem;
         background-color: rgba($white, .5);
         transition: background-color $transition;

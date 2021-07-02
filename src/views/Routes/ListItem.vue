@@ -1,20 +1,27 @@
 <template>
     <section class="list-item">
         <div class="row">
-            <div class="col-default-1">
-                <span class="list-item__index">{{ formattedIndex }}</span>
-            </div>
-            <div class="col-default-7">
-                <div class="list-item__info padding-left--s">
+            <div class="col-default-8">
+                <div class="list-item__info">
+                    <span class="list-item__caption icon icon-file-text2 margin-right--xs"></span>
                     <app-title
-                        tag="h3"
+                        tag="h4"
                         weight="normal"
-                        class="list-item__name margin-bottom--xxs"
+                        class="list-item__value"
                     >{{ data.name }}</app-title>
-                    <span class="list-item__date">
+                </div>
+                <div class="list-item__info margin-top--xxs">
+                    <span class="list-item__caption icon icon-calendar margin-right--xs"></span>
+                    <span class="list-item__value list-item__value--date">
                         {{ data.date[0] | date }}
                         &#8212;
                         {{ data.date[1] | date }}
+                    </span>
+                </div>
+                <div class="list-item__info margin-top--xxs">
+                    <span class="list-item__caption icon icon-credit-card margin-right--xs"></span>
+                    <span class="list-item__value">
+                        {{ data.costs.toLocaleString() }}
                     </span>
                 </div>
             </div>
@@ -60,13 +67,6 @@ export default class ListItem extends Vue {
         default: () => ({})
     }) readonly data!: IRoute
 
-    @Prop(Number)
-    readonly index!: number
-
-    get formattedIndex (): string | number {
-        return this.index < 10 ? `0${this.index}` : this.index
-    }
-
     openRoute (id: string): void {
         this.$store.commit('openRoute', id)
     }
@@ -88,28 +88,26 @@ export default class ListItem extends Vue {
         margin-top: 1rem;
     }
 
-    &__index {
+    &__info {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-        justify-content: center;
-        height: 100%;
-        font-size: 2rem;
-        font-weight: 700;
-        color: rgba($blue-dark, .5);
     }
 
-    &__info {
-        border-left: 2px solid rgba($blue-dark, .5);
+    &__caption {
+        color: $blue-dark;
     }
 
-    &__date {
-        display: inline-block;
-        padding: .5rem;
-        font-size: .875rem;
-        color: rgba($blue-dark, .5);
-        border-radius: .25rem;
-        background-color: $gray-lite;
+    &__value {
+
+        &--date {
+            display: inline-block;
+            padding: .5rem;
+            font-size: .875rem;
+            color: rgba($blue-dark, .5);
+            border-radius: .25rem;
+            background-color: $gray-lite;
+        }
     }
 
     &__buttons {

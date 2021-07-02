@@ -16,20 +16,22 @@ const store: StoreOptions<IRootState> = {
         processing: false,
         languages: ['ru', 'en'],
         routes: [
-            {
-                id: '0',
-                name: 'First route',
-                opened: false,
-                selected: false,
-                date: [1625153594, 1625153594]
-            },
-            {
-                id: '1',
-                name: 'Second route',
-                opened: false,
-                selected: false,
-                date: [1625153594, 1625153594]
-            }
+            // {
+            //     id: '0',
+            //     name: 'First route',
+            //     opened: false,
+            //     selected: false,
+            //     costs: 200000,
+            //     date: [1625153594, 1625153594]
+            // },
+            // {
+            //     id: '1',
+            //     name: 'Second route',
+            //     opened: false,
+            //     selected: false,
+            //     costs: 250000,
+            //     date: [1625153594, 1625153594]
+            // }
         ]
     },
     mutations: {
@@ -40,27 +42,33 @@ const store: StoreOptions<IRootState> = {
             state.processing = status
         },
         openRoute (state, id): void {
-            state.routes.forEach((item: IRoute): void => {
-                if (item.id === id) item.opened = true
-            })
+            if (state.routes?.length) {
+                state.routes.forEach((item: IRoute): void => {
+                    if (item.id === id) item.opened = true
+                })
+            }
         },
         closeRoute (state, id): void {
-            state.routes.forEach((item: IRoute): void => {
-                if (item.id === id) {
-                    item.opened = false
-                    item.selected = false
-                }
-            })
+            if (state.routes?.length) {
+                state.routes.forEach((item: IRoute): void => {
+                    if (item.id === id) {
+                        item.opened = false
+                        item.selected = false
+                    }
+                })
+            }
         },
         selectRoute (state, id): void {
-            state.routes.forEach((item: IRoute): void => {
-                if (id === null) {
-                    item.selected = false
-                    return
-                }
+            if (state.routes?.length) {
+                state.routes.forEach((item: IRoute): void => {
+                    if (id === null) {
+                        item.selected = false
+                        return
+                    }
 
-                item.selected = item.id === id
-            })
+                    item.selected = item.id === id
+                })
+            }
         }
     }
 }

@@ -64,7 +64,15 @@ export default class AppButton extends Vue {
         type: String,
         default: 'red',
         validator (value: string): boolean {
-            return ['red', 'border-red', 'yellow', 'green'].includes(value)
+            return [
+                'red',
+                'green',
+                'yellow',
+                'icon-red',
+                'border-red',
+                'border-green',
+                'border-yellow'
+            ].includes(value)
         }
     }) readonly theme!: string
 
@@ -168,6 +176,15 @@ export default class AppButton extends Vue {
 
             &:hover {
                 border-color: $green-dark;
+            }
+        }
+
+        &-icon-red {
+            color: $white;
+            background-color: $red;
+
+            &:hover {
+                color: rgba($white, .5);
             }
         }
     }

@@ -1,25 +1,35 @@
 <template>
     <div class="navigation">
-        <div class="navigation__tab navigation__tab--first">
+        <div class="navigation__tabs">
+            <div class="navigation__tab navigation__tab--first">
             <span
                 @click="selectTab(null)"
                 class="navigation__tab-name"
             >{{ $t('routes.title') }}</span>
-        </div>
-        <div
-            :key="item.id"
-            v-for="item in selected"
-            :class="tabClass(item.selected)"
-        >
+            </div>
+            <div
+                :key="item.id"
+                v-for="item in selected"
+                :class="tabClass(item.selected)"
+            >
             <span
                 @click="selectTab(item.id)"
                 class="navigation__tab-name"
             >{{ item.name }}</span>
-            <div
-                :title="$t('buttons.close')"
-                @click="closeRoute(item.id)"
-                class="navigation__tab-close icon icon-cross"
-            ></div>
+                <div
+                    :title="$t('buttons.close')"
+                    @click="closeRoute(item.id)"
+                    class="navigation__tab-close icon icon-cross"
+                ></div>
+            </div>
+        </div>
+        <div class="navigation__view">
+            <app-button theme="icon-red">
+                <span class="icon icon-map"></span>
+            </app-button>
+            <app-button theme="icon-red">
+                <span class="icon icon-list"></span>
+            </app-button>
         </div>
     </div>
 </template>
@@ -27,8 +37,14 @@
 <script lang="ts">
 import { IRoute } from '@/types/types'
 import { Component, Vue } from 'vue-property-decorator'
+import AppButton from '@/components/AppButton/AppButton.vue'
 
-@Component
+@Component({
+    components: {
+        AppButton
+    }
+})
+
 export default class Navigation extends Vue {
     routes: IRoute[]
 
@@ -63,11 +79,19 @@ export default class Navigation extends Vue {
 <style lang="scss" scoped>
 .navigation {
     $parent: &;
-    $height: 3.5rem;
+    $height: 2.5rem;
 
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
     height: $height;
     background-color: $white;
     box-shadow: inset 0 1px 0 0 rgba($gray-dark, .2), 0 0 10px 0 rgba($gray-dark, .5);
+
+    &__tabs {
+        height: 100%;
+    }
 
     &__tab {
         box-sizing: border-box;
@@ -99,7 +123,7 @@ export default class Navigation extends Vue {
             position: relative;
             right: -.75rem;
             z-index: 1;
-            font-size: .875rem;
+            font-size: .6rem;
             border-radius: 50%;
             color: $white;
             cursor: pointer;
@@ -174,6 +198,25 @@ export default class Navigation extends Vue {
                     border-bottom-color: transparent;
                 }
             }
+        }
+    }
+
+    &__view {
+        display: flex;
+        height: 100%;
+
+        &:before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: #{$height} solid transparent;
+            border-right: #{$height / 2} solid $red;
+        }
+
+        .app-button {
+            width: 4rem;
+            height: 100%;
         }
     }
 }

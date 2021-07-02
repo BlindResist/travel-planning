@@ -13,7 +13,7 @@ export default {
         download: 'Download',
         apply: 'Apply',
         delete: 'Delete',
-        createNew: 'Create new route!'
+        createNew: 'Create new'
     },
     footer: {
         name: 'Fast!CV',
@@ -21,6 +21,9 @@ export default {
         created: 'Created by'
     },
     routes: {
-        title: 'Routes list'
+        title: 'Routes list',
+        name: 'Name',
+        dates: 'Dates',
+        costs: 'Costs'
     }
 }

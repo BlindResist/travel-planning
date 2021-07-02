@@ -58,7 +58,7 @@ export default class AppHeader extends Vue {
     flex-flow: row nowrap;
     justify-content: flex-start;
     flex: 0 0 auto;
-    height: 4rem;
+    height: 3rem;
     padding: 0 1.25rem;
     position: relative;
     z-index: 10;

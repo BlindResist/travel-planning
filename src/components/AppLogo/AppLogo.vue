@@ -28,6 +28,7 @@ export default class AppLogo extends Vue {
     color: $red;
     font-size: 1.5rem;
     font-weight: 400;
+    line-height: 2;
     font-family: 'Pacifico', sans-serif;
     background: linear-gradient(360deg, #da092d 33%, #{$red} 50%);
     -webkit-background-clip: text;

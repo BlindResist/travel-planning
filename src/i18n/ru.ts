@@ -13,7 +13,7 @@ export default {
         download: 'Скачать',
         apply: 'Применить',
         delete: 'Удалить',
-        createNew: 'Создать новый маршрут!'
+        createNew: 'Создать новый'
     },
     footer: {
         name: 'Fast!CV',
@@ -21,6 +21,9 @@ export default {
         created: 'Создано'
     },
     routes: {
-        title: 'Маршруты'
+        title: 'Маршруты',
+        name: 'Имя',
+        dates: 'Даты',
+        costs: 'Расходы'
     }
 }
