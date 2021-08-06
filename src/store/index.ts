@@ -16,22 +16,22 @@ const store: StoreOptions<IRootState> = {
         processing: false,
         languages: ['ru', 'en'],
         routes: [
-            // {
-            //     id: '0',
-            //     name: 'First route',
-            //     opened: false,
-            //     selected: false,
-            //     costs: 200000,
-            //     date: [1625153594, 1625153594]
-            // },
-            // {
-            //     id: '1',
-            //     name: 'Second route',
-            //     opened: false,
-            //     selected: false,
-            //     costs: 250000,
-            //     date: [1625153594, 1625153594]
-            // }
+            {
+                id: '0',
+                name: 'First route',
+                opened: false,
+                selected: false,
+                costs: 200000,
+                date: [1625153594, 1625153594]
+            },
+            {
+                id: '1',
+                name: 'Second route',
+                opened: false,
+                selected: false,
+                costs: 250000,
+                date: [1625153594, 1625153594]
+            }
         ]
     },
     mutations: {
